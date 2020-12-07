@@ -1,0 +1,299 @@
+<!-- https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html -->
+
+
+<!doctype HTML>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    </head>
+    <script src="assets/js/aframe.min.js"></script>
+    <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+	<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+	
+	<script>
+
+		const extrudeSettings = { depth: 0.8, bevelEnabled: false };
+
+		const letterL = new THREE.Shape()
+					.moveTo(0, -1)
+					.lineTo(2, -1)
+					.lineTo(2, -.2)
+					.lineTo(.8, -.2)
+					.lineTo(.8, 1)
+					.lineTo(0, 1)
+					.lineTo(0, -1)
+
+		const letterI = new THREE.Shape()
+					.moveTo(.6, -1)
+					.lineTo(1.4, -1)
+					.lineTo(1.4, 1)
+					.lineTo(.6, 1)
+					.lineTo(.6, -1)
+		
+		const letterG = new THREE.Shape()
+					// .moveTo(20, 20)
+					.moveTo(1, 1)
+					.absarc(1, 0, 1, 90 * Math.PI / 180, 270 * Math.PI / 180, false )
+					.moveTo(1, -1)
+					.lineTo(2, -1)
+					.lineTo(2, 0)
+					.lineTo(1.2, 0)
+					.lineTo(1.2, -.2)
+					.lineTo(1, -.2)
+					.absarc(1, 0, .2, 270 * Math.PI / 180, 90 * Math.PI / 180, true )
+					.lineTo(1, 1)
+
+		const letterH = new THREE.Shape()
+					.moveTo(0, -1.0)
+					.lineTo(.8, -1.0)
+					.lineTo(.8, -.4)
+					.lineTo(1.2, -.4)
+					.lineTo(1.2, -1.0)
+					.lineTo(2.0, -1.0)
+					.lineTo(2.0, 1.0)
+					.lineTo(1.2, 1.0)
+					.lineTo(1.2, .4)
+					.lineTo(.8, .4)
+					.lineTo(.8, 1.0)
+					.lineTo(0, 1.0)
+					.lineTo(0, -1.0)
+
+		const letterT = new THREE.Shape()
+					.moveTo(.6, -1.0)
+					.lineTo(1.4, -1.0)
+					.lineTo(1.4, .2)
+					.lineTo(2.0, .2)
+					.lineTo(2.0, 1.0)
+					.lineTo(0, 1.0)
+					.lineTo(0, .2)
+					.lineTo(.8, .2)
+					.lineTo(.6, .4)
+					.lineTo(.6, -1.0)
+
+		const letterW = new THREE.Shape()
+					.moveTo(0, 1.0)
+					.lineTo(.8, 1.0)
+					.lineTo(.8, -.2)
+					.lineTo(1.0, 0)
+					.lineTo(1.2, -.2)
+					.lineTo(1.2, 1.0)
+					.lineTo(2.0, 1.0)
+					.lineTo(2.0, -1.0)
+					.lineTo(1.2, -1.0)
+					.lineTo(1.0, -.8)
+					.lineTo(.8, -1.0)
+					.lineTo(0, -1.0)
+					.lineTo(0, 2.0)
+		
+		const letterE = new THREE.Shape()
+					.moveTo(0, 1.0)
+					.lineTo(2.0, 1.0)
+					.lineTo(2.0, .2)
+					.lineTo(.8, .2)
+					.lineTo(1.0, 0)
+					.lineTo(.8, -.2)
+					.lineTo(2.0, -.2)
+					.lineTo(2.0, -1.0)
+					.lineTo(0, -1.0)
+					.lineTo(0, 1.0)
+
+		AFRAME.registerComponent('lightwelll', {
+		  schema: {
+			color: {
+			  default: '#000'
+			},
+		  },
+		
+		  update: function() {
+			var material = new THREE.MeshBasicMaterial({
+			  color: this.data.color,
+			  wireframe: true
+			});
+
+			let geometry = new THREE.ExtrudeBufferGeometry( letterL, extrudeSettings );
+		
+			this.el.setObject3D('mesh', new THREE.Mesh( geometry, new THREE.MeshNormalMaterial( { color: 0x0FF66 } ) ));
+		  },
+		
+		  remove: function() {
+			this.el.removeObject3D('mesh');
+		  }
+		});
+
+		AFRAME.registerComponent('lightwelli', {
+		  schema: {
+			color: {
+			  default: '#000'
+			},
+		  },
+		
+		  update: function() {
+			var material = new THREE.MeshBasicMaterial({
+			  color: this.data.color,
+			  wireframe: true
+			});
+
+			let geometry = new THREE.ExtrudeBufferGeometry( letterI, extrudeSettings );
+		
+			this.el.setObject3D('mesh', new THREE.Mesh( geometry, new THREE.MeshNormalMaterial( { color: 0x0FF66 } ) ));
+		  },
+		
+		  remove: function() {
+			this.el.removeObject3D('mesh');
+		  }
+		});
+
+		AFRAME.registerComponent('lightwellg', {
+		  schema: {
+			color: {
+			  default: '#000'
+			},
+		  },
+		
+		  update: function() {
+			var material = new THREE.MeshBasicMaterial({
+			  color: this.data.color,
+			  wireframe: true
+			});
+
+			let geometry = new THREE.ExtrudeBufferGeometry( letterG, extrudeSettings );
+		
+			this.el.setObject3D('mesh', new THREE.Mesh( geometry, new THREE.MeshNormalMaterial( { color: 0x0FF66 } ) ));
+		  },
+		
+		  remove: function() {
+			this.el.removeObject3D('mesh');
+		  }
+		});
+
+		AFRAME.registerComponent('lightwellh', {
+		  schema: {
+			color: {
+			  default: '#000'
+			},
+		  },
+		
+		  update: function() {
+			var material = new THREE.MeshBasicMaterial({
+			  color: this.data.color,
+			  wireframe: true
+			});
+
+			let geometry = new THREE.ExtrudeBufferGeometry( letterH, extrudeSettings );
+		
+			this.el.setObject3D('mesh', new THREE.Mesh( geometry, new THREE.MeshNormalMaterial( { color: 0x0FF66 } ) ));
+		  },
+		
+		  remove: function() {
+			this.el.removeObject3D('mesh');
+		  }
+		});
+
+		AFRAME.registerComponent('lightwellt', {
+		  schema: {
+			color: {
+			  default: '#000'
+			},
+		  },
+		
+		  update: function() {
+			var material = new THREE.MeshBasicMaterial({
+			  color: this.data.color,
+			  wireframe: true
+			});
+
+			let geometry = new THREE.ExtrudeBufferGeometry( letterT, extrudeSettings );
+		
+			this.el.setObject3D('mesh', new THREE.Mesh( geometry, new THREE.MeshNormalMaterial( { color: 0x0FF66 } ) ));
+		  },
+		
+		  remove: function() {
+			this.el.removeObject3D('mesh');
+		  }
+		});
+
+		AFRAME.registerComponent('lightwellw', {
+		  schema: {
+			color: {
+			  default: '#000'
+			},
+		  },
+		
+		  update: function() {
+			var material = new THREE.MeshBasicMaterial({
+			  color: this.data.color,
+			  wireframe: true
+			});
+
+			let geometry = new THREE.ExtrudeBufferGeometry( letterW, extrudeSettings );
+		
+			this.el.setObject3D('mesh', new THREE.Mesh( geometry, new THREE.MeshNormalMaterial( { color: 0x0FF66 } ) ));
+		  },
+		
+		  remove: function() {
+			this.el.removeObject3D('mesh');
+		  }
+		});
+
+		AFRAME.registerComponent('lightwelle', {
+		  schema: {
+			color: {
+			  default: '#000'
+			},
+		  },
+		
+		  update: function() {
+			var material = new THREE.MeshBasicMaterial({
+			  color: this.data.color,
+			  wireframe: true
+			});
+
+			let geometry = new THREE.ExtrudeBufferGeometry( letterE, extrudeSettings );
+		
+			this.el.setObject3D('mesh', new THREE.Mesh( geometry, new THREE.MeshNormalMaterial( { color: 0x0FF66 } ) ));
+		  },
+		
+		  remove: function() {
+			this.el.removeObject3D('mesh');
+		  }
+		});
+	</script>
+    
+    <body style='margin : 0px; overflow: hidden;'>
+        <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
+        <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
+
+        <!-- <a-assets>
+            <a-asset-item id="animated-asset" src="https://raw.githubusercontent.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-playground/models/CesiumMan.gltf"></a-asset-item>
+        </a-assets> -->
+
+        <!-- <a-marker type='pattern' preset='custom' url='assets/img/pattern-ar-marker-01.patt'> -->
+			<!-- <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+			<a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+			<a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+			<a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane> -->
+			<!-- <a-sky color="#ECECEC"></a-sky> -->
+		<!-- </a-marker> -->
+		
+		<a-marker-camera type='pattern' preset='custom' url='assets/img/pattern-ar-marker-01.patt'>
+			<a-entity scale="0.2, 0.2, 0.2">
+				<a-entity lightwelll="color: green;" position="-10 -.4 0" rotation="0 0 0" animation="property: rotation; to: 360 0 0; loop: true; dur: 20000"> </a-entity>
+				<a-entity lightwelli="color: green;" position="-8 -.4 0" rotation="0 0 0" animation="property: rotation; to: -360 0 0; loop: true; dur: 20000"> </a-entity>
+				<a-entity lightwellg="color: green;" position="-6.5 -.4 0" rotation="0 0 0" animation="property: rotation; to: 360 0 0; loop: true; dur: 20000"> </a-entity>
+				<a-entity lightwellh="color: green;" position="-4 -.4 0" rotation="0 0 0" animation="property: rotation; to: -360 0 0; loop: true; dur: 20000"> </a-entity>
+				<a-entity lightwellt="color: green;" position="-1.5 -.4 0" rotation="0 0 0" animation="property: rotation; to: 360 0 0; loop: true; dur: 20000"> </a-entity>
+				<a-entity lightwellw="color: green;" position="1 -.4 0" rotation="0 0 0" animation="property: rotation; to: -360 0 0; loop: true; dur: 20000"> </a-entity>
+				<a-entity lightwelle="color: green;" position="3.5 -.4 0" rotation="0 0 0" animation="property: rotation; to: 360 0 0; loop: true; dur: 20000"> </a-entity>
+				<a-entity lightwelll="color: green;" position="6 -.4 0" rotation="0 0 0" animation="property: rotation; to: -360 0 0; loop: true; dur: 20000"> </a-entity>
+				<a-entity lightwelll="color: green;" position="8.5 -.4 0" rotation="0 0 0" animation="property: rotation; to: 360 0 0; loop: true; dur: 20000"> </a-entity>
+			</a-entity>
+			<a-plane position="0 -.6 0" rotation="-90 0 0" width="1.2" height="1.2" material='opacity: 0.5;' color="#7BC8A4"></a-plane>
+		</a-marker-camera>
+
+        <!-- use this <a-entity camera> to support multiple-markers, otherwise use <a-marker-camera> instead of </a-marker> -->
+        <!-- <a-entity camera look-controls position="0 1.6 70" fov="10"></a-entity> -->
+        </a-scene>
+    </body>
+</html>
+
+
