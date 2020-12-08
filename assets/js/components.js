@@ -109,8 +109,8 @@ AFRAME.registerComponent('lathe', {
 	},
 
 	update: function () {
-		
-		const geometry = new THREE.LatheGeometry( this.data.profile );
+
+		const geometry = new THREE.LatheGeometry(this.data.profile);
 
 		let material = new THREE.MeshPhongMaterial({
 			color: this.data.color,
@@ -135,10 +135,10 @@ ANILEG component - for animating leg movement
 AFRAME.registerComponent('anileg', {
 	multiple: true,
 	clockwise: false,
-	
+
 
 	update: function () {
-		
+
 	},
 
 	tick: function (time, timeDelta) {
@@ -162,4 +162,122 @@ AFRAME.registerComponent('anileg', {
 	remove: function () {
 		this.el.removeObject3D('mesh');
 	}
+});
+
+/*
+ANIMATE component - generic animation holder
+*/
+
+AFRAME.registerComponent('animate-float', {
+	multiple: true,
+	schema: {
+		startFrame: {
+			default: 0
+		},
+		returnFrame: {
+			default: 50
+		}
+	},
+
+	init: function() {
+		this.tick = AFRAME.utils.throttleTick(this.tick, 100, this);
+	},
+
+	update: function () {
+
+	},
+
+	tick: function () {
+		this.doAnimation();
+	},
+
+	doAnimation: (function() {
+
+		return function () {
+			
+
+		};
+	}
+		
+	)(),
+
+	remove: function () {
+		this.el.removeObject3D('mesh');
+	}
+});
+
+/*
+ANIMATE WRAPPER component - master wrapper for all animations
+*/
+
+AFRAME.registerComponent('animate-wrapper', {
+
+	init: function() {
+		this.tick = AFRAME.utils.throttleTick(this.tick, 50, this);
+	},
+
+	update: function () {
+
+	},
+
+	tick: function () {
+		if (animationFrame < 100) {
+			animationFrame += 1;
+		} else {
+			animationFrame = 0;
+		}
+
+		console.log(animationFrame)
+
+		this.doAnimations();
+
+	},
+
+	doAnimations: (function() {		
+
+		return function () {
+
+			if (animationFrame < 33) {
+				reindeerPositions[4].object3D.position.y += 0.01;
+			} else {
+				reindeerPositions[4].object3D.position.y -= 0.005;
+			}
+
+			if (10 < animationFrame && animationFrame < 43) {
+				reindeerPositions[3].object3D.position.y += 0.01;
+			} else {
+				reindeerPositions[3].object3D.position.y -= 0.005;
+			}
+
+			if (20 < animationFrame && animationFrame < 53) {
+				reindeerPositions[2].object3D.position.y += 0.01;
+			} else {
+				reindeerPositions[2].object3D.position.y -= 0.005;
+			}
+
+			if (30 < animationFrame && animationFrame < 63) {
+				reindeerPositions[1].object3D.position.y += 0.01;
+			} else {
+				reindeerPositions[1].object3D.position.y -= 0.005;
+			}
+
+			if (40 < animationFrame && animationFrame < 73) {
+				reindeerPositions[0].object3D.position.y += 0.01;
+			} else {
+				reindeerPositions[0].object3D.position.y -= 0.005;
+			}
+
+			if (50 < animationFrame && animationFrame < 83) {
+				santaEl.object3D.position.y += 0.01;
+			} else {
+				santaEl.object3D.position.y -= 0.005;
+			}
+
+			
+			
+
+		};
+	}
+		
+	)()
 });

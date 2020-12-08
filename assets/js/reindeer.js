@@ -1,11 +1,11 @@
-function createReindeer() {
+function createReindeer(posz, targetEl, reindeerScale, rudolf) {
 
 	console.log('building reindeer')
 
-	let sceneEl = document.querySelector('a-scene');
-
 	let reindeerEl = document.createElement('a-entity');
 	reindeerEl.setAttribute('reindeer', '');
+	reindeerEl.setAttribute('position', {x: 0, y: 0, z: posz});
+	reindeerEl.setAttribute('scale', reindeerScale);
 
 	let reindeerHeadEl = document.createElement('a-entity');
 	reindeerHeadEl.setAttribute('lathe', '');
@@ -83,10 +83,20 @@ function createReindeer() {
 	reindeerEl.appendChild(reindeerTailEl);
 
 	let reindeerNoseEl = document.createElement('a-entity');
-	reindeerNoseEl.setAttribute('sphere', {color: colours.black})
+	reindeerNoseEl.setAttribute('sphere', {color: rudolf ? colours.red : colours.black});
 	reindeerNoseEl.setAttribute('scale', {x: .3, y: .3, z: .3});
 	reindeerNoseEl.setAttribute('position', {x: -2.8, y: -1.1, z: 0});
 	reindeerEl.appendChild(reindeerNoseEl);
+
+	if (rudolf) {
+		let rudolfNoseEl = document.createElement('a-entity');
+		rudolfNoseEl.setAttribute('sphere', {color: colours.red})
+		rudolfNoseEl.setAttribute('scale', {x: .3, y: .3, z: .3});
+		rudolfNoseEl.setAttribute('position', {x: -2.8, y: -1.1, z: 0});
+		rudolfNoseEl.setAttribute('material', 'opacity: 0.3; color: #F33;');
+		rudolfNoseEl.setAttribute('animation', 'property: scale; to: 2 2 2; loop: true; dur: 5000; direction: alternate');
+		reindeerEl.appendChild(rudolfNoseEl);
+	}
 
 	let antlerData = [
 		{
@@ -116,7 +126,7 @@ function createReindeer() {
 		},
 		{
 			rot: [9, 0, 15],
-			pos: [0, 2.2, -.3],
+			pos: [0, 2.2, -1.3],
 			scale: [0.2, 0.3, 0.2]
 		},
 	]
@@ -130,6 +140,6 @@ function createReindeer() {
 		reindeerEl.appendChild(antlerBit);
 	}
 
-	sceneEl.appendChild(reindeerEl);
+	targetEl.appendChild(reindeerEl);
 	
 }

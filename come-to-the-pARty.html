@@ -10,8 +10,9 @@
 	<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 	<script src="assets/js/colours.js"></script>
 	<script src="assets/js/geometry.js"></script>
-	<script src="assets/js/models.js"></script>
+	<script src="assets/js/components.js"></script>
 	<script src="assets/js/reindeer.js"></script>
+	<script src="assets/js/animation.js"></script>
 	<script src="assets/js/init.js"></script>
 
 </head>
@@ -20,13 +21,69 @@
 	<a-entity id="rain" particle-system="preset: rain; color: #24CAFF; particleCount: 5000"></a-entity>
 	
 	<a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;' fog="type: linear; color: #FFF">
-		<!-- <a-entity extrusion="color: #CCCCCC; depth: 2;" rotation="30 30 30"> </a-entity>
 
-		<a-entity sphere="color: #FF6600; size: 1;"> </a-entity>
+		<a-marker-camera type='pattern' preset='custom' url='assets/img/pattern-ar-marker-01.patt'>
 
-		<a-entity lathe> </a-entity> -->
+			<a-entity id='position-wrapper' scale=".5 .5 .5" position="0  0.8 0">
+			
+				<a-entity animate-wrapper></a-entity>
+				
 
-		<a-entity camera position="3 0 25" fov="10"></a-entity>
+
+				<!-- SANTA AND SLEIGH -->
+				<a-entity id='santa'>
+					<a-entity santahead scale="0.2 0.2 0.2" position=".3 1.4 0"rotation="0 0 0">
+						<!-- head -->
+						<a-entity sphere position="0 0 0" rotation="0 0 0" scale="0.8, 1, 0.8"> </a-entity>
+						<!-- nose -->
+						<a-entity sphere position="-0.7 0.2 0" rotation="0 0 -30" scale="0.4, 0.4, 0.3"> </a-entity>
+						<!-- beard -->
+						<a-entity sphere="color: #FFF" position="-0.05, -0.15, 0" rotation="0 0 -20" scale="0.9, 0.9, 0.9"> </a-entity>
+						<!-- hat -->
+						<a-entity id='hat'> </a-entity>
+						<!-- bauble -->
+						<a-entity sphere="color: #FFF" position="1.7, 2.2, 0" rotation="0 0 0" scale="0.2, 0.2, 0.2"> </a-entity>
+					
+						<!-- <a-entity lettero position="0 -2 0" rotation="0 0 0" animation="property: rotation; to: -360 0 0; loop: true; dur: 20000"> </a-entity> -->
+						<!-- <a-entity sled position="0 -2 3" rotation="0 0 0"> </a-entity> -->
+					</a-entity>
+					
+					<a-entity>
+						<!-- sled -->
+						<a-entity id='sleigh'></a-entity>
+						<a-entity id='sledshoe-left' scale="0.15 0.15 0.15" position="-0.1 0.8 .35" rotation="-10 0 0"> </a-entity>
+						<a-entity id='sledshoe-right' sledshoe scale="0.15 0.15 0.15" position="-0.1 0.8 -0.35" rotation="10 0 0"> </a-entity>
+						<!-- sacks -->
+						<a-entity sphere="color: #990011" position="0.85, 1.5, 0.11" rotation="0 0 -20" scale="0.2 0.2 0.18"> </a-entity>
+						<a-entity sphere="color: #FF0011" position="0.88, 1.5, -0.11" rotation="0 0 -20" scale="0.17 0.17 0.17"> </a-entity>
+						<a-entity sphere="color: #990010" position="0.63, 1.43, -0.04" rotation="0 0 -20" scale="0.16 0.17 0.16"> </a-entity>
+						<a-entity sphere="color: #FF1111" position="0.75, 1.6, 0.04" rotation="0 0 -20" scale="0.13 0.12 0.14"> </a-entity>
+						<a-entity sphere="color: #FF0001" position="0.75, 1.55, -0.16" rotation="0 0 -20" scale="0.09 0.1 0.1"> </a-entity>
+					</a-entity>
+				</a-entity>
+
+				<a-entity animation="property: rotation; to: 360 0 0; loop: true; dur: 25000; " scale="4, 4, 4" position="0 3 0" text="value: HO HO HO\n\n Please join us for the first ever annual Heimanis family Christmas party tradition\n\n Wednesday 23rd December @ our house, from 3pm onwards \n\n Please bring JOY and a plate ; align: center; color: #FFD700"></a-entity>
+				<a-entity animation="property: rotation; to: -360 180 180; loop: true; dur: 25000; " rotation="0 180 180" scale="4, 4, 4" position="0 3 0" text="value: HO HO HO\n\n Please join us for the first ever annual Heimanis family Christmas party tradition\n\n Wednesday 23rd December @ our house, from 3pm onwards \n\n Please bring JOY and a plate ; align: center; color: #FFD700"></a-entity>
+
+				<a-entity sphere="color: #FFFFFF" position="-12, 0, 2" rotation="20 0 0" scale="1 0.3 .4" material='opacity: 0.2;' animation="property: position; to: 12 0 2; loop: true; dur: 12000; "> </a-entity>
+				<a-entity sphere="color: #FFFFFF" position="-12, 1, -2" rotation="20 0 0" scale="1.3 0.25 .38" material='opacity: 0.2;' animation="property: position; to: 12 1 -2; loop: true; dur: 11300; "> </a-entity>
+				<a-entity sphere="color: #FFFFFF" position="-12, 0.7, 1" rotation="20 0 0" scale="1.2 0.4 .35" material='opacity: 0.2;' animation="property: position; to: 12 0.7 1; loop: true; dur: 15000; "> </a-entity>
+				<a-entity sphere="color: #FFFFFF" position="-12, 0, -1" rotation="20 0 0" scale=".5 0.2 .2" material='opacity: 0.2;' animation="property: position; to: 12 0 -1; loop: true; dur: 15400; "> </a-entity>
+				<a-entity sphere="color: #FFFFFF" position="-12, -.3, 2" rotation="20 0 0" scale="3 0.3 .3" material='opacity: 0.2;' animation="property: position; to: 12 -.3 2; loop: true; dur: 16000; "> </a-entity>
+				<a-entity sphere="color: #FFFFFF" position="-12, 0.5, 0.5" rotation="20 0 0" scale=".7 0.3 .3" material='opacity: 0.2;' animation="property: position; to: 12 0.5, 0.5; loop: true; dur: 14040; "> </a-entity>
+				<a-entity sphere="color: #FFFFFF" position="-12, -0.5, -0.6" rotation="20 0 0" scale=".8 0.2 .2" material='opacity: 0.2;' animation="property: position; to: 12 -0.5, -0.6; loop: true; dur: 10500; "> </a-entity>
+
+				<a-entity sphere="color: #FFFFFF" position="-12, 0.4, 2" rotation="20 0 0" scale="1 0.3 .4" material='opacity: 0.2;' animation="property: position; to: 12 0.4 2; loop: true; dur: 16500; "> </a-entity>
+				<a-entity sphere="color: #FFFFFF" position="-12, 1.4, -2" rotation="20 0 0" scale="1.3 0.25 .38" material='opacity: 0.2;' animation="property: position; to: 12 1.4 -2; loop: true; dur: 16000; "> </a-entity>
+				<a-entity sphere="color: #FFFFFF" position="-12, 0.11, 1" rotation="20 0 0" scale="1.2 0.4 .35" material='opacity: 0.2;' animation="property: position; to: 12 0.11 1; loop: true; dur: 15000; "> </a-entity>
+				<a-entity sphere="color: #FFFFFF" position="-12, 0.4, -1" rotation="20 0 0" scale=".5 0.2 .2" material='opacity: 0.2;' animation="property: position; to: 12 0.4 -1; loop: true; dur: 12400; "> </a-entity>
+				<a-entity sphere="color: #FFFFFF" position="-12, -.7, 2" rotation="20 0 0" scale="3 0.3 .3" material='opacity: 0.2;' animation="property: position; to: 12 -.7 2; loop: true; dur: 14000; "> </a-entity>
+				<a-entity sphere="color: #FFFFFF" position="-12, 0.9, 0.5" rotation="20 0 0" scale=".7 0.3 .3" material='opacity: 0.2;' animation="property: position; to: 12 0.8, 0.5; loop: true; dur: 12540; "> </a-entity>
+				<a-entity sphere="color: #FFFFFF" position="-12, -0.9, -0.6" rotation="20 0 0" scale=".8 0.2 .2" material='opacity: 0.2;' animation="property: position; to: 12 -0.9, -0.6; loop: true; dur: 11000; "> </a-entity>
+
+				<!-- <a-entity camera position="3 2 25" fov="10"></a-entity> -->
+			</a-entity>
+		</a-marker-camera>
 	</a-scene>
 	
 </body>
